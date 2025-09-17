@@ -1,0 +1,98 @@
+body {
+    font-family: "Arial";
+    background-color: #121212;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.bgCon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.bgdiv {
+    background-color: rgb(0, 0, 0);
+    height: 650px;
+    width: 425px;
+    border-radius: 35px;
+    box-shadow: 2px 2px 30px rgba(0, 255, 0, 0.8);
+    animation: borderanimation 1.5s linear infinite;
+}
+
+@keyframes borderanimation {
+  0%   { box-shadow: 0 -5px 15px rgba(0,255,0,0.5); }
+  25%  { box-shadow: 5px 0 15px rgba(0,255,0,0.5); }
+  50%  { box-shadow: 0 5px 15px rgba(0,255,0,0.5); }
+  75%  { box-shadow: -5px 0 15px rgba(0,255,0,0.5); }
+  100% { box-shadow: 0 -5px 15px rgba(0,255,0,0.5); }
+}
+
+.title {
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-size: 42.5px;
+}
+
+.f1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85%;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.it  {
+    height: 35px;
+    width: 225px;
+    border-radius: 35px;
+    border: none;
+    outline: none;
+    padding-left: 25px;
+    font-size: 19px;
+    transition: all 0.3s ease;
+}
+
+.top {
+    margin-bottom: 10px;
+}
+
+.it::placeholder {
+    color: black;
+}
+
+.it:focus {
+    transform: translateY(-6px);
+    animation: borderanimation 1.5s linear infinite;
+}
+
+.submitbtn {
+    height: 45px;
+    width: 150px;
+    font-size: 25px;
+    border-radius: 35px;
+    border: none;
+    outline: none;
+    margin-top: 50px;
+    transition: all 0.3s ease;
+}
+
+.submitbtn:hover {
+    background-color: green;
+    color: white;
+    transform: translateY(-8px);
+    cursor: pointer;
+}
+
+.files {
+    color: white;
+    margin-left: 75px;
+}

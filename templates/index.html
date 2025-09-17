@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ songname }} - {{ authorname }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="allCon">
+
+        <div class="songinfo">
+            <h1 class="songname">{{songname}}</h1>
+            <p class="songauthor">{{ author }}</p>
+        </div>
+
+        <video src="../static/ssstik.io_1741300629181.mp4" class="bgvid" muted loop></video>
+
+        <button class="controls"></button>
+        
+        <div class="canvasCon">
+            <canvas class="c1">
+                <audio class="song" hidden></audio>
+            </canvas>
+        </div>
+
+    </div>
+
+    <script>
+
+        const container = document.querySelector('.allCon');
+const control = document.querySelector('.controls');
+const bgvid = document.querySelector('.bgvid');
+const canvas = document.querySelector('.c1');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const ctx = canvas.getContext('2d');
+
+let song;
+let analyser;
+let isPlaying = false;
+let animation;
+let audioCTX;
+
+function draw() {
+    ctx.beginPath()
+    ctx.moveTo(0, canvas.height - 2);
+    ctx.lineTo(canvas.width, canvas.height - 2);
+    ctx.strokeStyle = '#ffffffff';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+}
+
+container.addEventListener('click', ()=> {
+    let song;
+
+    if (isPlaying === false) {
+        control.textContent = '❚❚';
+
+        bgvid.play();
+
+        audio = new Audio("{{ url_for('static', filename='songuploads/' + audio) }}");
+
+        audioCTX = new AudioContext();
+
+        audio.play();
+
+        audioSrc = audioCTX.createMediaElementSource(audio);
+
+        analyser = audioCTX.createAnalyser();
+
+        audioSrc.connect(analyser);
+
+        analyser.connect(audioCTX.destination);
+
+        analyser.fftSize = 512;
+
+        const bufferLength = analyser.frequencyBinCount;
+
+        const dataArray = new Uint8Array(bufferLength);
+
+        const barWidth = canvas.width / bufferLength;
+
+        let barHeight;
+        
+        let x;
+
+        function animate() {
+            x = 0;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            analyser.getByteFrequencyData(dataArray);
+
+            for (let i = 0; i < bufferLength; i++) {
+                draw();
+                barHeight = dataArray[i];
+                ctx.fillStyle = '#ffffffff';
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                x += barWidth + 5;
+            }
+
+            animation = window.requestAnimationFrame(animate);
+
+        }
+        animate()
+        isPlaying = true;
+    } else {
+        audioCTX.suspend();
+        control.textContent = '▶';
+        bgvid.pause()
+        window.cancelAnimationFrame(animation)
+        isPlaying = false;
+    }
+
+})
+
+    </script>
+</body>
+</html>

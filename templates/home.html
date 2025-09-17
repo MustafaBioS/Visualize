@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+<body>
+
+    <div class="bgCon">
+        <div class="bgdiv">
+            <h1 class="title">Play Your Song</h1>
+            <form action="{{ url_for('home') }}" enctype="multipart/form-data" class="f1" method='post'>
+                <input type="text" name="songname" maxlength="64" class="it top" placeholder="Song Name" required>
+                <input type="text" name="authorname" maxlength="64" placeholder="Author's Name" class="it" required>
+                <input type="file" name="audio" accept=".mp3,audio/mpeg" class="files" required>
+                <input type="submit"class='submitbtn' value="Play Song">
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
