@@ -8,8 +8,6 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'AudioVisualizer'
 
-
-
 # Routes
 
 @app.route('/', methods=['GET', 'POST'])
