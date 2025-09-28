@@ -1,35 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ songname }} - {{ author }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-
-    <div class="allCon">
-
-        <div class="songinfo">
-            <h1 class="songname">{{songname}}</h1>
-            <p class="songauthor">{{ author }}</p>
-        </div>
-
-        <video src="../static/ssstik.io_1741300629181.mp4" class="bgvid" muted loop></video>
-
-        <button class="controls"></button>
-        
-        <div class="canvasCon">
-            <canvas class="c1">
-                <audio class="song" hidden></audio>
-            </canvas>
-        </div>
-
-    </div>
-
-    <script>
-
-        const container = document.querySelector('.allCon');
+const container = document.querySelector('.allCon');
 const control = document.querySelector('.controls');
 const bgvid = document.querySelector('.bgvid');
 const canvas = document.querySelector('.c1');
@@ -62,7 +31,7 @@ container.addEventListener('click', ()=> {
 
         bgvid.play();
 
-        audio = new Audio("{{ url_for('static', filename='songuploads/' + audio) }}");
+        audio = new Audio('Travis Scott - goosebumps (Lyrics) ft. Kendrick Lamar - Vibe Music.mp3');
 
         audioCTX = new AudioContext();
 
@@ -117,7 +86,3 @@ container.addEventListener('click', ()=> {
     }
 
 })
-
-    </script>
-</body>
-</html>
